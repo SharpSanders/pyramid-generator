@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Pyramid Generator</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="app">
+    <section class="project-card">
+      <h1>Pyramid Generator</h1>
+      <p class="project-description">
+        A simple JavaScript app that generates an ASCII pyramid using your chosen character, number of rows, and orientation.
+      </p>
+
+      <form id="pyramid-form" class="pyramid-form">
+        <div class="form-row">
+          <label for="character-input">Character</label>
+          <input
+            id="character-input"
+            type="text"
+            maxlength="1"
+            value="!"
+          />
+        </div>
+
+        <div class="form-row">
+          <label for="rows-input">Rows</label>
+          <input
+            id="rows-input"
+            type="number"
+            min="1"
+            max="30"
+            value="10"
+          />
+        </div>
+
+        <div class="form-row checkbox-row">
+          <label for="inverted-input">
+            <input id="inverted-input" type="checkbox" />
+            Inverted pyramid
+          </label>
+        </div>
+
+        <button type="submit">Generate Pyramid</button>
+      </form>
+
+      <pre id="pyramid-output" class="pyramid-output"></pre>
+
+      <footer class="project-footer">
+        <!-- remember to insert link of my portfolio website -->
+        <a href="../index.html" class="back-link">← Back to Portfolio</a>
+      </footer>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

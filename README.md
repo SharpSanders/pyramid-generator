@@ -1,64 +1,71 @@
 # Pyramid Generator
 
-A simple JavaScript tool that generates an ASCII pyramid based on your chosen **character**, **number of rows**, and **orientation** (normal or inverted).  
-Built to practice loops, string manipulation, DOM handling, and responsive UI layout.
+An interactive ASCII pyramid generator built with **HTML, CSS, and vanilla JavaScript**.  
+Users can customize the character, number of rows, and orientation (standard or inverted) to dynamically generate centered ASCII art.
+
+## Live Demo
+https://sharpsanders.github.io/pyramid-generator/
+
+<img src="./img/Screenshot-pyramid-generator.png" alt="Pyramid Generator Screenshot">
 
 ---
 
-## Demo
+## Overview
 
-The UI includes:
+This project focuses on string manipulation, loop logic, and dynamic DOM updates.  
+It renders a properly centered ASCII pyramid inside a `<pre>` block to preserve spacing and formatting.
 
-- A stylish gradient background with a centered project card.
-- Input fields for:
-  - **Character** (1 character only)
-  - **Rows** (1–30)
-  - **Inverted** checkbox
-- A **Generate Pyramid** button
-- A `<pre>` code block that prints the ASCII pyramid using monospaced formatting.
-- A **Back to Portfolio** link (relative path).
+Users can configure:
 
-Example output for character `!` and 5 rows:
+- **Character** (single ASCII character)
+- **Rows** (1–30)
+- **Inverted mode** (reverses pyramid order)
 
-diff
-Copy code
+The interface is styled as a centered card with a gradient background and responsive layout.
+
+---
+
+## Example Output
+
+Character: `!`  
+Rows: `5`
+
 !
 !!!
 !!!!!
 !!!!!!!
 !!!!!!!!!
 
-yaml
-Copy code
 
-If **Inverted pyramid** is checked, the order reverses.
-
----
-
-## Tech Stack
-
-- **HTML** – Form structure and layout
-- **CSS** – Card styling, input styles, responsive design, gradient background
-- **JavaScript** – Pyramid creation algorithm, event handling, dynamic rendering
+If **Inverted mode** is enabled, the row order reverses.
 
 ---
 
 ## Features
 
-- Generates a pyramid using any single ASCII character.
-- Accepts row counts between **1 and 30**.
-- Optional **inverted** mode (top-heavy pyramid).
-- Auto-fills the initial preview using:
-  - Character: `!`
-  - Rows: `10`
-- Clean, responsive interface.
-- Uses a `<pre>` block with `white-space: pre` for accurate formatting.
+- Generates centered ASCII pyramids using any single character
+- Accepts row counts between **1–30**
+- Optional inverted orientation
+- Default preview on page load
+- Responsive UI layout
+- Accurate formatting using `<pre>` and `white-space: pre`
 
 ---
 
-## How It Works (JavaScript Overview)
+## Technical Highlights
 
-### 1. Building a single row
+- Pure JavaScript algorithm for dynamic string construction
+- Uses `String.prototype.repeat()` for spacing and character distribution
+- Controlled input validation (single-character enforcement)
+- Defensive handling for invalid numeric input
+- Event-driven form submission
+- Clean separation of layout (HTML), styling (CSS), and logic (JavaScript)
+
+---
+
+## How It Works
+
+### Row Construction
 
 ```js
 function padRow(rowNumber, rowCount, character) {
@@ -67,71 +74,67 @@ function padRow(rowNumber, rowCount, character) {
 
   return " ".repeat(spaces) + character.repeat(chars) + " ".repeat(spaces);
 }
-Calculates left/right spacing.
+Calculates symmetric spacing
 
-Centers the pyramid row.
+Centers each row
 
-Creates the pyramid using the correct number of characters.
+Scales character count correctly per row
 
-2. Generating the full pyramid
-js
-Copy code
+Pyramid Generation
 function generatePyramid(character, count, inverted = false) {
   const rows = [];
 
   for (let i = 1; i <= count; i++) {
     const row = padRow(i, count, character);
-
-    if (inverted) {
-      rows.unshift(row);
-    } else {
-      rows.push(row);
-    }
+    inverted ? rows.unshift(row) : rows.push(row);
   }
 
   return rows.join("\n");
 }
-Builds rows from 1 to the chosen count.
+Iterates from 1 → row count
 
-inverted decides whether rows are added to the end or beginning.
+Uses conditional insertion for inverted mode
 
-3. Form handling
-Ensures the character input always uses only its FIRST character.
+Joins rows using newline characters for <pre> rendering
 
-Validates rows; falls back to default if invalid.
+Tech Stack
+HTML5
 
-Updates the <pre> output with the finalized pyramid.
+CSS3 (gradient background, card layout, responsive styling)
+
+JavaScript (ES6)
+
+No frameworks or external libraries.
 
 Project Structure
-text
-Copy code
 pyramid-generator/
-├── index.html      # Form, layout, page structure
-├── styles.css      # Gradient background, card UI, responsive styles
-└── script.js       # Pyramid logic, form handling, dynamic output
-What I Practiced
-Using string.repeat() and " ".repeat() for layout.
+  index.html
+  styles.css
+  script.js
+  img/
+    Screenshot-pyramid-generator.png
+What This Demonstrates
+Loop-based pattern generation
 
-Constructing ASCII art using loops.
+String manipulation and spacing logic
 
-Handling checkbox + text + number inputs.
+DOM updates from user input
 
-Preventing default form submission.
+Controlled form handling
 
-Using a <pre> tag for monospace ASCII rendering.
+Clean UI structuring for small interactive tools
 
-Creating a clean component-style card UI.
+Future Enhancements
+Live preview while typing
 
-Future Improvements
-Add live preview as the user types.
+Additional pyramid styles (left-aligned, hollow, solid block)
 
-Add multiple pyramid styles (left-aligned, hollow, full block).
+Export to text file
 
-Allow exporting the pyramid as a text file.
+Theme toggle (light/dark)
 
-Add theme switching (light/dark).
-
-Add animation that draws the pyramid row-by-row.
+Animated row-by-row drawing effect
 
 Author
-Created by Trevyn Sanders.
+Trevyn Sanders
+Better Endeavors LLC
